@@ -15,7 +15,6 @@ import time
 import pymongo
 import stem
 import stem.connection
-import time
 import urllib2
 from stem import Signal
 from stem.control import Controller
@@ -28,9 +27,6 @@ class bcolors:
     WARNING = '\033[93m'#yello
     FAIL = '\033[91m'#red
     ENDC = '\033[0m'
-
-
-
 
 def request(url):
     def _set_urlproxy():
@@ -64,8 +60,6 @@ def loop():
                     req = urllib2.Request(url, headers={ 'User-Agent': 'Mozilla/5.0' })
                     cont = urllib2.urlopen(req).read()
                     soup = BeautifulSoup(cont, "lxml")
-                #print cont
-                
                     data={}
                     data['imdbID']=iid
                     data['html_full']=cont
@@ -75,11 +69,7 @@ def loop():
                 print '!!!'
             end=time.time()
             print bcolors.OKBLUE+str((end-start)/60) + "M" + bcolors.ENDC
-        # break
-
-
-
-
+    
 user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
 headers={'User-Agent':user_agent}
 
@@ -87,8 +77,6 @@ client = pymongo.MongoClient('localhost', 27017)
 db = client['imdbIDs']
 imdb_ids=db['imdbIDs']
 imdb_ids.ensure_index("imdbID",unique=True)
-
-
 
 iidbuf=[]
 start_num=0
@@ -101,10 +89,6 @@ while start_num<10000000:
     if start_num%100000==0:
         print start_num
 print len(iidbuf)
-
-
-
-
 
 start=time.time()
 
@@ -135,13 +119,3 @@ while 1:
         print 
     time.sleep(1)
     
-
-
-
-
-
-
-
-
-
-
