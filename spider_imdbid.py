@@ -93,13 +93,8 @@ print len(iidbuf)
 start=time.time()
 
 for i in range(1):
-    #print i
-    #time.sleep(i*2)
     t = threading.Thread(target=loop, name='T'+str(i))
-    #t1 = threading.Thread(target=loop, name='2')
     t.start()
-    #t1.start()
-    #print threading.active_count()
 
 time.sleep(1)
 count_changeIP=0
